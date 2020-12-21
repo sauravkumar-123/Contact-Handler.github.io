@@ -79,13 +79,11 @@
 		
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-    <dependency>
+      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-security</artifactId>
-        <version>2.4.0</version>
-      </dependency>
-		
-		
+        </dependency>
+			
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 <dependency>
     <groupId>javax.validation</groupId>
