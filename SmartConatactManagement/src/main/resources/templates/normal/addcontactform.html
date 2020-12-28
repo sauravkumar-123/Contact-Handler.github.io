@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/userbase::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Add Contact form</title>
+</head>
+<body>
+    <section>
+	      <div class="card mr-3 ml-3">
+	        <div class="card-body">
+	        
+	        <h1 class="text-center">Add Contacts</h1>
+	            
+	            <div class="container-fluid mt-1">
+	                    <div class="row">
+	                           <div class="col-md-10 offset-md-1">
+	                           
+	                           
+ <form  action="#" th:action="@{/user/process-addcontact/}"  th:object="${contact}" enctype="multipart/form-data" method="POST" class="mt-2">
+	                           
+	                           <!-- contact_name filed -->
+	                           <!--  
+	                           <div class="input-group">
+	                              <div class="input-group-prepend">
+	                              
+	                                 <div class="input-group-text"></div>
+	                                      <i class="fa fa-plus"></i>
+	                              </div>
+	                           
+	                              <input type="text" id="contact_name" name="contact_name" placeholder="Enter Contact Name" class="form-control"/>
+	                         </div>
+	       
+	                           -->
+	                           
+	                           <!-- contact_name -->
+	                           
+	    <div class="col-auto">
+           <label class="sr-only" for="inlineFormInputGroup">contact_name</label>
+               <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                          <div class="input-group-text">
+                                <i class="fas fa-plus-square"></i>
+                          </div>
+                          
+        </div>
+          <input type="text" class="form-control" id="contact_name" name="contact_name" placeholder="enter contact name" required="required"/>
+      </div>
+    </div>
+    
+            <!-- contact_nickname -->
+    
+	    <div class="col-auto">
+           <label class="sr-only" for="inlineFormInputGroup">contact_nickname</label>
+               <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                          <div class="input-group-text">
+                           <i class="fas fa-plus-circle"></i>
+                          </div>
+        </div>
+        <input type="text" class="form-control" id="contact_nickname" name="contact_nickname" placeholder="enter contact nick name" required="required"/>
+      </div>
+    </div>
+    
+    <!-- work -->
+    
+	    <div class="col-auto">
+           <label class="sr-only" for="inlineFormInputGroup">work</label>
+               <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                          <div class="input-group-text">
+                          <i class="fas fa-briefcase"></i>
+                          </div>
+        </div>
+        <input type="text" class="form-control" id="work" name="work" placeholder="enter contact profession (Optional)"/>
+      </div>
+    </div>
+    
+      <!-- contact_email -->
+	                           
+	    <div class="col-auto">
+           <label class="sr-only" for="inlineFormInputGroup">contact_email</label>
+               <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                          <div class="input-group-text">
+                          <i class="fas fa-at"></i>
+                          </div>
+        </div>
+        <input type="email" class="form-control" id="contact_email" name="contact_email" placeholder="enter contact email" required="required"/>
+      </div>
+    </div>
+    
+    
+    <!-- contact_mobno -->
+    
+	    <div class="col-auto">
+           <label class="sr-only" for="inlineFormInputGroup">contact_mobno</label>
+               <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                          <div class="input-group-text">
+                          <i class="fas fa-mobile-alt"></i>
+                          </div>
+        </div>
+        <input type="text" class="form-control" id="contact_mobno" name="contact_mobno" placeholder="enter contact mob no" required="required"/>
+      </div>
+    </div>
+    
+    <!-- contact_description -->
+    
+	    <div class="col-auto">
+           <label class="sr-only" for="inlineFormInputGroup">contact_description</label>
+               <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                          <div class="input-group-text">
+                         <i class="fas fa-info-circle"></i>
+                          </div>
+        </div>
+        <textarea class="form-control" id="contact_description" rows="7" name="contact_description" placeholder="enter short contact info here (Optional)"></textarea>
+      </div>
+    </div>
+    
+    
+    <!-- contact_imageurl -->
+    
+	    <div class="col-auto">
+           <label class="sr-only" for="inlineFormInputGroup">contact_imageurl</label>
+               <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                          <div class="input-group-text">
+                         <i class="fas fa-file-upload"></i>
+                          </div>
+        </div>
+        <input type="file" class="form-control" name="profileimage" placeholder="uplaod image" required="required"/>
+      </div>
+    </div>
+	          <br>                 
+	                  <div class="container text-center">
+	                  
+	                  <button type="submit" class="btn bg-primary btn-block text-white">Add Contacts</button>
+	                  <button type="reset" class="btn bg-warning btn-block text-white">Reset</button>
+	                  </div>                           
+	                           
+	                           
+ </form>                     
+	                      </div>   
+	                    </div>
+	            
+	            </div>
+	        
+	        </div>
+	      
+	      
+	      </div>
+	</section>
+</body>
+</html>

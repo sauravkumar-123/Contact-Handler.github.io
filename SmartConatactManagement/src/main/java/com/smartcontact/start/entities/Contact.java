@@ -7,6 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "CONTACT")
@@ -15,12 +21,36 @@ public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int contact_id;
+	
+	/*@NotBlank(message = "Name not be empty")
+	@NotNull(message = "Name should not be null")
+	@Size(min=2,max=50,message = "minimum 2 and maximum 50 characters are allowed!!")*/
 	private String contact_name;
+	
+	
+	//@Size(min=2,max=50,message = "minimum 2 and maximum 50 characters are allowed!!")
 	private String contact_nickname;
+	
+	/*@NotBlank(message = "Work field not be empty")
+	@NotNull(message = "Work field should not be null")*/
 	private String work;
+	
+	/*@Column(unique = true)
+	@Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message = "Invalid Email")
+	@NotNull(message = "Contact Email should not be null")
+	@Size(min=2,max=50,message = "minimum 2 and maximum 50 characters are allowed!!")*/
 	private String contact_email;
+	
+	/*@Column(unique = true)
+	@Pattern(regexp = "(0/91)?[7-9][0-9]{9}", message = "Invalid Mobile number")
+	@NotNull(message = "Contact Mobile number should not be null")
+	@NotBlank(message = "Contact Mobile number not be empty")*/
 	private String contact_mobno;
+	
+	/*@NotNull(message = "Please select an image")
+	@NotBlank(message = "Please select an image")*/
 	private String contact_imageurl;
+	
 	@Column(length = 1000)
 	private String contact_description;
 	
@@ -118,6 +148,8 @@ public class Contact {
 		this.user = user;
 	}
 
+	
+	/*
 	@Override
 	public String toString() {
 		return "Contact [contact_id=" + contact_id + ", contact_name=" + contact_name + ", contact_nickname="
@@ -126,5 +158,5 @@ public class Contact {
 				+ contact_description + ", user=" + user + "]";
 	}
 
-	
+	*/
 }

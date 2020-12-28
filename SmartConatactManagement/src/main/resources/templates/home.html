@@ -10,7 +10,14 @@
           <h1 class="font-weight-bold">Welcome To Smart Contact Management </h1>
              <p>Smarter way to collect and manage your contacts.</p>
              
-             <button type="button" class="btn bg-primary text-white">Get Start</button>
+             <form id="getstart" th:action="@{/signin/}">
+            <!--   <button type="button" class="btn bg-primary text-white">Get Start</button> -->
+            
+                         <div class="form-group">    
+                               <br>
+                                <input type="submit" name="getstart" class="btn btn-primary" value="Get Start">
+                            </div>
+             </form>
     </div>
     
 	</section>
