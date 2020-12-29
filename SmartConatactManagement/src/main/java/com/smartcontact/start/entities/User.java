@@ -49,6 +49,7 @@ public class User {
 	        		                          "It contains at least one special character which includes !@#$%&*()-+=^ \n\n"+		                                                                                               
 	                                           "It doesn’t contain any white space \n\n")*/
 	@NotNull(message = "Password should not be null")
+	@NotBlank(message = "Password should not be empty")
 	private String user_password;
 	private String user_role;
 	private boolean isenabled;

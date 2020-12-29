@@ -6,8 +6,17 @@
 </head>
 <body>
     <section>
+    <div class="container">
 	      <div class="card mr-3 ml-3">
 	        <div class="card-body">
+	        
+	        
+	        <!-- Adding Message alert -->
+	                   <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                        <p class="text-center" th:text="${session.message.content}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                        </div>
+	        
 	        
 	        <h1 class="text-center">Add Contacts</h1>
 	            
@@ -16,7 +25,7 @@
 	                           <div class="col-md-10 offset-md-1">
 	                           
 	                           
- <form  action="#" th:action="@{/user/process-addcontact/}"  th:object="${contact}" enctype="multipart/form-data" method="POST" class="mt-2">
+ <form novalidate action="#" th:action="@{/user/process-addcontact/}" enctype="multipart/form-data" method="POST" th:object="${contact}" class="mt-2">
 	                           
 	                           <!-- contact_name filed -->
 	                           <!--  
@@ -41,11 +50,22 @@
                           <div class="input-group-text">
                                 <i class="fas fa-plus-square"></i>
                           </div>
-                          
-        </div>
-          <input type="text" class="form-control" id="contact_name" name="contact_name" placeholder="enter contact name" required="required"/>
+                      
+                   
+                  </div>
+                              
+            <input type="text" class="form-control" id="contactname_field" name="contact_name" th:classappend="${#fields.hasErrors('contact_name') ? 'is-invalid':''}" placeholder="enter contact name" required="required" th:value="${contact.contact_name}">
+          
+            <div class="invalid-feedback" th:each="e : ${#fields.errors('contact_name')}" th:text="${e}">
+                   
+           </div>
+          
       </div>
+      
+     
     </div>
+    
+  
     
             <!-- contact_nickname -->
     
@@ -57,7 +77,13 @@
                            <i class="fas fa-plus-circle"></i>
                           </div>
         </div>
-        <input type="text" class="form-control" id="contact_nickname" name="contact_nickname" placeholder="enter contact nick name" required="required"/>
+        <input type="text" class="form-control" id="contactnickname_field" name="contact_nickname" th:classappend="${#fields.hasErrors('contact_nickname') ? 'is-invalid':''}" placeholder="enter contact nick name" required="required" th:value="${contact.contact_nickname}">
+        
+         <div class="invalid-feedback" th:each="e : ${#fields.errors('contact_nickname')}" th:text="${e}">
+                   
+                  </div>
+        
+        
       </div>
     </div>
     
@@ -71,7 +97,7 @@
                           <i class="fas fa-briefcase"></i>
                           </div>
         </div>
-        <input type="text" class="form-control" id="work" name="work" placeholder="enter contact profession (Optional)"/>
+        <input type="text" class="form-control" id="work_field" name="work" placeholder="enter contact profession (Optional)" th:value="${contact.work}">
       </div>
     </div>
     
@@ -85,7 +111,12 @@
                           <i class="fas fa-at"></i>
                           </div>
         </div>
-        <input type="email" class="form-control" id="contact_email" name="contact_email" placeholder="enter contact email" required="required"/>
+        <input type="email" class="form-control" id="contactemail_field" name="contact_email" th:classappend="${#fields.hasErrors('contact_email') ? 'is-invalid':''}" placeholder="enter contact email" required="required"  th:value="${contact.contact_email}">
+        
+        <div class="invalid-feedback" th:each="e : ${#fields.errors('contact_email')}" th:text="${e}">
+                   
+        </div>
+        
       </div>
     </div>
     
@@ -100,8 +131,15 @@
                           <i class="fas fa-mobile-alt"></i>
                           </div>
         </div>
-        <input type="text" class="form-control" id="contact_mobno" name="contact_mobno" placeholder="enter contact mob no" required="required"/>
+        <input type="text" class="form-control" id="contactmobno_field" name="contact_mobno"  th:classappend="${#fields.hasErrors('contact_mobno') ? 'is-invalid':''}" placeholder="enter contact mob no" required="required" th:value="${contact.contact_mobno}">
+        
+         <div class="invalid-feedback" th:each="e : ${#fields.errors('contact_mobno')}" th:text="${e}">
+                   
+        </div>
+        
       </div>
+      
+      
     </div>
     
     <!-- contact_description -->
@@ -114,7 +152,7 @@
                          <i class="fas fa-info-circle"></i>
                           </div>
         </div>
-        <textarea class="form-control" id="contact_description" rows="7" name="contact_description" placeholder="enter short contact info here (Optional)"></textarea>
+        <textarea class="form-control" id="contactdescription_field" rows="7" name="contact_description" placeholder="enter short contact info here (Optional)" th:text="${contact.contact_description}"></textarea>
       </div>
     </div>
     
@@ -150,6 +188,17 @@
 	      
 	      
 	      </div>
+	      </div>
+	     
+	     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	     
+	     <script>
+      tinymce.init({
+      selector: '#mytextarea'
+        	//selector: 'textarea#default'
+      });
+    </script>
+	     
 	</section>
 </body>
 </html>

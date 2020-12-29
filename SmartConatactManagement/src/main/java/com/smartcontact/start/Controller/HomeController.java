@@ -94,7 +94,7 @@ public class HomeController {
 			// TODO: handle exception
 		 e.printStackTrace();
 		 model.addAttribute("user", user);
-		 session.setAttribute("message", new Message("Something went wrong !!"+e.getMessage(),"alert-danger"));
+		 session.setAttribute("message", new Message("Something went wrong !! Try Again"+e.getMessage(),"alert-danger"));
 		 return "signup";
 		}
 		

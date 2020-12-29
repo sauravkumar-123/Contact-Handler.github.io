@@ -22,33 +22,33 @@ public class Contact {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int contact_id;
 	
-	/*@NotBlank(message = "Name not be empty")
+	@NotBlank(message = "Name not be empty")
 	@NotNull(message = "Name should not be null")
-	@Size(min=2,max=50,message = "minimum 2 and maximum 50 characters are allowed!!")*/
+	@Size(min=2,max=50,message = "minimum 2 and maximum 50 characters are allowed!!")
 	private String contact_name;
 	
 	
-	//@Size(min=2,max=50,message = "minimum 2 and maximum 50 characters are allowed!!")
+	@Size(min=2,max=50,message = "minimum 2 and maximum 50 characters are allowed!!")
 	private String contact_nickname;
 	
-	/*@NotBlank(message = "Work field not be empty")
-	@NotNull(message = "Work field should not be null")*/
+	//@NotBlank(message = "Work field not be empty")
+	//@NotNull(message = "Work field should not be null")
 	private String work;
 	
-	/*@Column(unique = true)
+	@Column(unique = true)
 	@Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message = "Invalid Email")
 	@NotNull(message = "Contact Email should not be null")
-	@Size(min=2,max=50,message = "minimum 2 and maximum 50 characters are allowed!!")*/
+	@Size(min=2,max=50,message = "minimum 2 and maximum 50 characters are allowed!!")
 	private String contact_email;
 	
-	/*@Column(unique = true)
+	@Column(unique = true)
 	@Pattern(regexp = "(0/91)?[7-9][0-9]{9}", message = "Invalid Mobile number")
 	@NotNull(message = "Contact Mobile number should not be null")
-	@NotBlank(message = "Contact Mobile number not be empty")*/
+	@NotBlank(message = "Contact Mobile number should not be null")
 	private String contact_mobno;
 	
-	/*@NotNull(message = "Please select an image")
-	@NotBlank(message = "Please select an image")*/
+	//@NotNull(message = "Please select an image")
+	//@NotBlank(message = "Please select an image")
 	private String contact_imageurl;
 	
 	@Column(length = 1000)
@@ -149,14 +149,13 @@ public class Contact {
 	}
 
 	
-	/*
-	@Override
+	
+	/*@Override
 	public String toString() {
 		return "Contact [contact_id=" + contact_id + ", contact_name=" + contact_name + ", contact_nickname="
 				+ contact_nickname + ", work=" + work + ", contact_email=" + contact_email + ", contact_mobno="
 				+ contact_mobno + ", contact_imageurl=" + contact_imageurl + ", contact_description="
 				+ contact_description + ", user=" + user + "]";
-	}
+	}*/
 
-	*/
 }
