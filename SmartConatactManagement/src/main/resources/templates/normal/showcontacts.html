@@ -26,18 +26,25 @@
   
     <tr th:each="c:${contacts}">
       <th scope="row" th:text="'SCM2020'+'-'+${c.contact_id}"></th>
-      <td th:text="${c.contact_name}+' '+'('+${c.contact_nickname}+')'"></td>
+      <td>
+      
+      <img  src="" class="my_profile_picture" th:src="@{'/img/'+${c.contact_imageurl}}" alt="profile photo" />
+      <span th:text="${c.contact_name}+' '+'('+${c.contact_nickname}+')'"></span>
+      
+      </td>
       <td th:text="${c.contact_email}"></td>
       <td th:text="${c.contact_mobno}"></td>
       <td>
-         <button type="button" class="btn btn-success btn-sm">View Profile</button>
-         <button type="button" class="btn btn-primary btn-sm">Update</button>
-         <button type="button" class="btn btn-danger btn-sm">Delete</button>
+         <a th:href="@{'/user/'+${c.contact_id}+'/contact/'}"  href="#" class="btn btn-success btn-sm active" role="button" aria-pressed="true">View Profile</a>
+         <a th:href="@{'/user/contact/'+${c.contact_id}}"  href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Update</a>
+         <a th:href="@{'/user/contact/'+${c.contact_id}}"  href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Delete</a>
       </td>
     </tr>
   </tbody>
 </table>
-	        
+	      
+	      
+	 <!-- Most Important Concepts-->       
 	       <!-- Pagenation Implemented -->
 	       
  <nav aria-label="Page navigation example">

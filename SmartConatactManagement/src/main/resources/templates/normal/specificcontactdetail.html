@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/userbase::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>UserDash Board</title>
+</head>
+<body>
+    <section>
+	     <div class="card mr-3 ml-3" th:if=${contact}>
+	     
+	       <div class="card-body">
+	       
+	         <div class="container text-center">
+	         
+	         <img  src="" style="height:200px; width:200px;" class="my_profile_picture" th:src="@{'/img/'+${contact.contact_imageurl}}" alt="profile photo" />
+	         
+	         
+	         <h3 class="mt-3">Name :  <span th:text="${contact.contact_name}"></span> ( <span th:text="${contact.contact_nickname}"></span>)</h3>
+	         
+	         <a class="btn btn-outline-success" href="#" role="button">
+	         <img  src="" style="height:30px; width:30px;" class="whatsapp_icon" th:src="@{'/img/whatsapp.png'}" alt="whatsapp" /></a>
+	       
+	        <a class="btn btn-outline-primary"  href="#" role="button">
+	         <img  src="" style="height:30px; width:30px;" class="livechat_icon" th:src="@{'/img/livechat.png'}" alt="livechat" /></a>    
+	         
+	         <a class="btn btn-outline-info"  href="#" role="button">
+	         <img  src="" style="height:30px; width:30px;" class="call_icon" th:src="@{'/img/call.png'}" alt="call" /></a>     
+	         
+	         <a class="btn btn-outline-secondary"  href="#" role="button">
+	         <img  src="" style="height:30px; width:30px;" class="videocall_icon" th:src="@{'/img/videocall.png'}" alt="videocall" /></a> 
+	         
+	         <a class="btn btn-outline-warning"  href="#" role="button">
+	         <img  src="" style="height:30px; width:30px;" class="sharecontact_icon" th:src="@{'/img/sharecontact.png'}" alt="sharecontact" /></a>   
+	         
+	                   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	   
+
+      
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sl. No</th>
+      <th scope="col">SCM2020-<span th:text="${contact.contact_id}"></span></th>
+      
+    </tr>
+  </thead>
+  
+  
+  <tbody>
+    <tr>
+       <th scope="col">Profession</th>
+        <th scope="col"><span th:text="${contact.work}"></span></th>
+    </tr>
+    
+     <tr>
+        <th scope="col">Email</th>
+        <th scope="col"><span th:text="${contact.contact_email}"></span></th>
+    </tr>
+    
+     <tr>
+         <th scope="col">Mobile No</th>
+          <th scope="col"><span th:text="${contact.contact_mobno}"></span></th>
+    </tr>
+    
+    
+  </tbody>
+  
+     
+</table>
+	     
+	    <div class="descereption mt-3">
+	    <h4>Contact Profile</h4>
+          <th:block th:text="${contact.contact_description}"> </th:block>
+     </div>
+	       
+	      <div class="container mt-3">
+	       
+	     <a  href="#" class="btn btn-primary btn-sm btn-block" role="button" aria-pressed="true">Update</a>
+         <a  href="#" class="btn btn-danger btn-sm btn-block" role="button" aria-pressed="true">Delete</a>
+	       </div> 
+	        
+	         </div>
+	       
+	       </div>
+	         
+	     
+	     </div>
+	     
+	      <h2 class="text-center p-3 bg-danger text-white mr-3 ml-3" th:unless="${contact}">You don't have permission to see other user contacts.</h2>
+	</section>
+</body>
+</html>

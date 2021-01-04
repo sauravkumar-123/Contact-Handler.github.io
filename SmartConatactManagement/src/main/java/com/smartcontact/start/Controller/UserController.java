@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.criteria.CommonAbstractCriteria;
 import javax.servlet.http.HttpSession;
@@ -34,6 +35,7 @@ import com.smartcontact.start.DAO.UserRepository;
 import com.smartcontact.start.Helper.Message;
 import com.smartcontact.start.entities.Contact;
 import com.smartcontact.start.entities.User;
+
 
 @Controller
 @RequestMapping("/user")
@@ -115,6 +117,7 @@ public class UserController {
 		//processing and upload image file
 		if(imagefile.isEmpty()) {
 			System.out.println("file not recevied here");
+			contact.setContact_imageurl("contact.png");
 		}
 		else {
 			
@@ -182,6 +185,25 @@ public class UserController {
 		return "normal/showcontacts";
 	}
 	
+	
+	//Showing particular contact detail.
+	@GetMapping("/{contact_id}/contact")
+	public String ParticularDetail(@PathVariable("contact_id") Integer cid,Model model,Principal principal) {
+		
+		System.out.println("CID==>"+cid);
+		Optional<Contact> contactoptional=this.contactrepository.findById(cid);
+		
+		Contact contact=contactoptional.get();
+		String username=principal.getName();
+		User user=this.userrepository.getUserByUserName(username);
+		
+		if(user.getUser_id()==contact.getUser().getUser_id())
+		{
+			model.addAttribute("contact", contact);
+			model.addAttribute("title",contact.getContact_name());
+		}
+		return "normal/specificcontactdetail";
+	}
 }
 
 
