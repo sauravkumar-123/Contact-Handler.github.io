@@ -37,6 +37,7 @@ import com.smartcontact.start.entities.Contact;
 import com.smartcontact.start.entities.User;
 
 
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -197,12 +198,49 @@ public class UserController {
 		String username=principal.getName();
 		User user=this.userrepository.getUserByUserName(username);
 		
+	try {
 		if(user.getUser_id()==contact.getUser().getUser_id())
 		{
 			model.addAttribute("contact", contact);
 			model.addAttribute("title",contact.getContact_name());
 		}
-		return "normal/specificcontactdetail";
+		
+	return "normal/specificcontactdetail";
+	}catch(Exception e) 
+	{
+	e.printStackTrace();
+	return "normal/specificcontactdetail";
+	}
+		
+	}
+	
+	
+	//delete a single contact handler.
+	@GetMapping("/deletecontact/{contact_id}")
+	public String DeleteContact(@PathVariable("contact_id") Integer cid,Model model,Principal principal,HttpSession session)
+	{
+		Optional<Contact> contactoptional=this.contactrepository.findById(cid);
+		Contact contact=contactoptional.get();
+		
+		String username=principal.getName();
+		User user=this.userrepository.getUserByUserName(username);
+		
+		//check
+	
+		try {
+			if(user.getUser_id()==contact.getUser().getUser_id())
+			{
+			contact.setUser(null);
+			this.contactrepository.delete(contact);
+			session.setAttribute("message",new Message("Contact deleted Successfully","alert-success"));
+			}
+			return "redirect:/user/show-contacts/0";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "redirect:/user/show-contacts/0";
+		}
+		
 	}
 }
 

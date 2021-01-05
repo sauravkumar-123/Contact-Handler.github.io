@@ -7,7 +7,16 @@
 <body>
     <section>
 	     <div class="card mr-3 ml-3">
+	     
+	      
 	     <div class="card-body">
+	     
+	     <!-- Adding Message alert -->
+	                   <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                        <p class="text-center" th:text="${session.message.content}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                        </div>
+	     
 	         
 	        <h2 class="text-center">Your Contacts</h2>
 	        
@@ -36,8 +45,8 @@
       <td th:text="${c.contact_mobno}"></td>
       <td>
          <a th:href="@{'/user/'+${c.contact_id}+'/contact/'}"  href="#" class="btn btn-success btn-sm active" role="button" aria-pressed="true">View Profile</a>
-         <a th:href="@{'/user/contact/'+${c.contact_id}}"  href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Update</a>
-         <a th:href="@{'/user/contact/'+${c.contact_id}}"  href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Delete</a>
+         <a th:href="@{'/user/'+${c.contact_id}+'/contact/'}"  href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Update</a>
+         <a th:attr="onclick=|deletecontact(${c.contact_id})|" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Delete</a>
       </td>
     </tr>
   </tbody>
