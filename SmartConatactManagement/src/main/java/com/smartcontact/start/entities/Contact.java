@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.criterion.AggregateProjection;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -149,6 +150,12 @@ public class Contact {
 	}
 
 	
+	//call when user use to delete or  the contact.
+	@Override
+	public boolean equals(Object obj)
+	{
+	   return this.contact_id==((Contact)obj).getContact_id();	
+	}
 	
 	/*@Override
 	public String toString() {

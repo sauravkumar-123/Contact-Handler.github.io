@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.CommonDataSource;
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.util.StringBuilderFormattable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -225,13 +227,18 @@ public class UserController {
 		String username=principal.getName();
 		User user=this.userrepository.getUserByUserName(username);
 		
-		//check
+		//check authentication user
 	
 		try {
 			if(user.getUser_id()==contact.getUser().getUser_id())
 			{
-			contact.setUser(null);
-			this.contactrepository.delete(contact);
+			//contact.setUser(null);
+			//this.contactrepository.delete(contact);
+				
+			User usertobedelete=this.userrepository.getUserByUserName(principal.getName());
+			usertobedelete.getContacts().remove(contact);
+			
+			this.userrepository.save(user);
 			session.setAttribute("message",new Message("Contact deleted Successfully","alert-success"));
 			}
 			return "redirect:/user/show-contacts/0";
@@ -242,7 +249,98 @@ public class UserController {
 		}
 		
 	}
+	
+	
+	//update form handler
+	@PostMapping("/updatecontact/{contact_id}")
+	public String Updateform(@PathVariable("contact_id") Integer cid,Model model)
+	{
+		model.addAttribute("title", "Update Contact - Smart Contact Management");
+		Contact contact=this.contactrepository.findById(cid).get();
+		model.addAttribute("contact",contact);
+		return "normal/updateform";
+	}
+	
+	
+	
+	
+	//Update Contact Handler
+	@PostMapping("/process-updatecontact")
+	public String UpdateContact(@Valid @ModelAttribute("contact") Contact contact,
+			@RequestParam("profileimage") MultipartFile imagefile,
+			BindingResult bindingresult,
+			Principal principal,HttpSession session,Model model) 
+	{
+		
+		
+		
+		try {
+
+			if(bindingresult.hasErrors())
+			{
+				System.out.println("Error.......->"+bindingresult);
+				model.addAttribute("contact", contact);
+				
+				throw new Exception();
+				//session.setAttribute("message", new Message("Something went wrong !!","alert-danger"));
+				//return "normal/addcontactform";
+			}	
+			
+			Contact oldcontactdetail=this.contactrepository.findById(contact.getContact_id()).get();
+			
+			//image
+			if(!imagefile.isEmpty())
+			{
+			   //image update 
+				//delete old photo 
+				
+				File deleteFile=new ClassPathResource("static/img").getFile();
+				File file=new File(deleteFile,oldcontactdetail.getContact_imageurl());
+				file.delete();
+				
+				//update with new photo.
+				
+				File savefile=new ClassPathResource("static/img").getFile();
+				Path path=Paths.get(savefile.getAbsolutePath()+File.separator+imagefile.getOriginalFilename());
+				Files.copy(imagefile.getInputStream(),path,StandardCopyOption.REPLACE_EXISTING);
+				contact.setContact_imageurl(imagefile.getOriginalFilename());
+				
+			}
+			else {
+				contact.setContact_imageurl(oldcontactdetail.getContact_imageurl());
+			}
+			String usrename=principal.getName();
+			User user=this.userrepository.getUserByUserName(usrename);
+			contact.setUser(user);
+			
+		this.contactrepository.save(contact);
+		session.setAttribute("message", new Message("Contact updated Successfully","alert-success"));
+		return "normal/updateform";
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			session.setAttribute("message", new Message("Something went wrong !! Try Again","alert-danger"));
+			model.addAttribute("contact", contact);
+			return "normal/updateform";
+		}
+			
+	}
+	
+	
+	//User profile page controller.
+	@GetMapping("/userprofile")
+	public String ViewuserProfile(Model model,
+			Principal principal
+			) {
+		
+		String username=principal.getName();
+		User user=this.userrepository.getUserByUserName(username);
+		
+		model.addAttribute("title","UserProfile - Smart Contact Management");
+		model.addAttribute("user",user);
+		return "normal/userprofile";
+	}
+	
 }
-
-
 

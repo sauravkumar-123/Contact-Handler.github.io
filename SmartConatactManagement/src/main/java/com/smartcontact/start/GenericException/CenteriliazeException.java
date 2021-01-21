@@ -11,11 +11,12 @@ public class CenteriliazeException {
 
 	//Handling Exception for All Controller.
 	
-	@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
-	@ExceptionHandler(value=Exception.class)
-	public String GenericexceptionHandler(Model model)
-	{
-		model.addAttribute("msg","Exception found!!!!!!!");
-		return "errorPage";
-	}
+		@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
+		@ExceptionHandler(value=Exception.class)
+		public String GenericexceptionHandler(Model model)
+		{
+			model.addAttribute("msg","Exception found!!!!!!!");
+			model.addAttribute("title","Error!! - Smart Contact Management");
+			return "errorPage";
+		}
 }
