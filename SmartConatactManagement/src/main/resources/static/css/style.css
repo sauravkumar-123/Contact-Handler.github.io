@@ -117,3 +117,17 @@ body{
 	object-fit:cover;
 	border-radius:50%;
 }
+
+/* search bar css */
+.serach-container{
+	position: relative;
+}
+
+.serach-result{
+	position: absolute;
+	background: silver;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid gray;
+	display: none;
+}

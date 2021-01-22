@@ -342,5 +342,7 @@ public class UserController {
 		return "normal/userprofile";
 	}
 	
+	
+	
 }
 
