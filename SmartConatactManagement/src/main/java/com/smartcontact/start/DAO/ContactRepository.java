@@ -22,5 +22,8 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
 	
 	//for searching contact.
 	public List<Contact> findByWorkContainingAndUser(String keyword,User user);
+	
+	//find contact by ID used in Contact Service Class.
+	public Contact findById(int contactid);
 
 }

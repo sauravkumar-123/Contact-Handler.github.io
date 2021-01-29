@@ -286,7 +286,7 @@ public class UserController {
 				//return "normal/addcontactform";
 			}	
 			
-			Contact oldcontactdetail=this.contactrepository.findById(contact.getContact_id()).get();
+			Contact oldcontactdetail=this.contactrepository.findById(contact.getContact_id());
 			
 			//image
 			if(!imagefile.isEmpty())

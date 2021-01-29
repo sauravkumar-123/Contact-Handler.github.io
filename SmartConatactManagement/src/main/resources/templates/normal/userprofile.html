@@ -20,9 +20,9 @@
 	         
 	        
 
-      
-<table class="table">
-  <thead>
+<div class="table-responsive">      
+<table class="table table-stripped table-dark">
+  <thead class="thead-dark">
     <tr>
       <th scope="col">User ID</th>
       <th scope="col">USER2020-<span th:text="${user.user_id}"></span></th>
@@ -52,7 +52,7 @@
   
      
 </table>
-	     
+</div>	     
 	    <div class="descereption mt-3">
 	    <h4>About Me:</h4>
           <th:block th:text="${user.about_user}"> </th:block>

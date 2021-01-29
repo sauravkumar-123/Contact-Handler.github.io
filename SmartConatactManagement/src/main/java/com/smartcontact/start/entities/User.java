@@ -3,7 +3,6 @@ package com.smartcontact.start.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +16,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 
@@ -58,6 +59,7 @@ public class User {
 	private String about_user;
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy ="user",orphanRemoval = true)
+	@JsonBackReference //Child table data
 	private List<Contact> contacts=new ArrayList<>();
 	
 	public User() {

@@ -12,10 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.criterion.AggregateProjection;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "CONTACT")
@@ -58,7 +55,8 @@ public class Contact {
 	private String contact_description;
 	
 	@ManyToOne
-	@JsonIgnore
+	//@JsonIgnore
+	@JsonManagedReference //Parent table data
 	private User user;
 	
 	public Contact() {
